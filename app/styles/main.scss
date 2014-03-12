@@ -4,7 +4,7 @@ $icon-font-path: "/bower_components/bootstrap-sass/vendor/assets/fonts/";
 @import "../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
-@keyframes taptapshipKey {
+@keyframes moveIn {
   from {
     margin-right: 0px;
   }
@@ -46,52 +46,44 @@ h1 {
 }
 
 .logo--home {
-  position: absolute;
-  right: 0;
+  float: right;
 
   .key {
     float: left;
-    transition: margin 200ms;
+    transition: text-indent 100ms;
     -webkit-animation-fill-mode: forwards;
+    opacity: 0;
 
     &:hover {
-      font-size: 30px;
+      text-indent: 10px;
+
+      &::after {
+        transition: background 2s;
+      }
     }
 
     &:first-of-type {
-      animation-duration: 500ms;
-      animation-delay: 400ms;
-      animation-name: taptapshipKey;
+      animation-delay: 800ms;
+      animation-duration: 500ms, 250ms;
+      animation-name: fadeIn, moveIn;
     }
 
     &:nth-of-type(2) {
-      animation-duration: 500ms;
-      animation-delay: 200ms;
-      animation-name: taptapshipKey;
+      animation-delay: 400ms;
+      animation-duration: 1s, 500ms;
+      animation-name: fadeIn, moveIn;
     }
 
     &:last-of-type {
-      animation-duration: 500ms;
-      animation-name: taptapshipKey;
-    }
-  }
-
-  .key--tap:hover {
-    margin-left: 5px;
-    margin-right: 0;
-    &::after {
-      color: #aaa;
-      content: "tap.";
+      animation-duration: 2.2s;
+      animation-name: fadeIn;
     }
   }
 
   .key--ship:hover {
-    margin-left: 10px;
-    margin-right: -30px;
     &::after {
-      color: #3f4770;
-      content: "ship.";
-      background: none;
+      background-size: 300%;
+      background-position: center;
     }
   }
 }
@@ -110,6 +102,7 @@ h1 {
 
 .key--tap::after {
   content: "☝";
+  content: "☞";
 }
 
 .key--ship::after {
