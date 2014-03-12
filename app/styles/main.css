@@ -6269,7 +6269,7 @@ button.close {
   }
 
   to {
-    margin-right: -20px;
+    margin-right: -10px;
   }
 }
 @keyframes moveIn {
@@ -6278,7 +6278,7 @@ button.close {
   }
 
   to {
-    margin-right: -20px;
+    margin-right: -10px;
   }
 }
 
@@ -6312,15 +6312,25 @@ h1 {
 }
 
 .key {
+  -webkit-transform: rotate(-2deg);
+  transform: rotate(-2deg);
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 0 3px 0 #ddd;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   text-align: center;
-  line-height: 100px;
-  font-size: 50px;
+  line-height: 50px;
+  font-size: 25px;
   color: #aaa;
+}
+@media (min-width: 460px) {
+  .key {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 50px;
+  }
 }
 
 .key--tap::after {
@@ -6350,13 +6360,15 @@ h1 {
   bottom: 0;
   opacity: 0;
   -webkit-animation-fill-mode: forwards;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
+  z-index: 30;
 }
 
 .slide-out {
+  border-radius: 10px 0 0 10px;
   position: fixed;
   z-index: 10;
   transition: left 200ms, -webkit-transform 250ms ease-in-out;
@@ -6366,15 +6378,30 @@ h1 {
   bottom: 8%;
   left: 100%;
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .slide-out > * {
   display: none;
 }
+.slide-out h1 {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.02) 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  color: #444;
+  margin: -11px;
+  margin-bottom: 20px;
+  border-radius: 10px 0 0 0;
+  padding: 10px;
+  line-height: 2em;
+}
 .slide-out:hover {
-  left: 8%;
-  -webkit-transform: rotate(0.25deg);
-  transform: rotate(0.25deg);
-  background: linear-gradient(to left, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.8) 100%);
+  z-index: 100;
+  left: 10%;
+  width: 90%;
+  -webkit-transform: rotate(0);
+  transform: rotate(0);
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8) 0%, white 100%);
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1);
 }
 .slide-out:hover > * {
   display: block;
