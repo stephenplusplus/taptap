@@ -1,5 +1,4 @@
 'use strict';
-// Generated on 2014-03-12 using generator-gulp-webapp 0.0.4
 
 var gulp = require('gulp');
 var wiredep = require('wiredep').stream;
@@ -30,10 +29,30 @@ gulp.task('scripts', function () {
 
 // HTML
 gulp.task('html', function () {
-  return gulp.src('app/*.html')
-    .pipe($.useref())
+  var filter = {
+    css: $.filter('styles/**/*.css'),
+    js: $.filter('scripts/**/*.js')
+  };
+  var useref = $.useref();
+
+  gulp.src(['app/**/*.html', '!app/bower_components/**/*.html'])
+    .pipe(useref.assets())
+    .pipe(filter.js)
+    .pipe($.ngmin())
+    .pipe($.uglify({
+      mangle: false
+    }))
+    .pipe(filter.js.restore())
+    .pipe(filter.css)
+    .pipe($.minifyCss())
+    .pipe(filter.css.restore())
+    .pipe(useref.restore())
+    .pipe(useref)
     .pipe(gulp.dest('dist'))
     .pipe($.size());
+
+  gulp.src('app/bower_components/bootstrap/fonts/*')
+    .pipe(gulp.dest('dist/fonts'));
 });
 
 // Images
@@ -50,14 +69,11 @@ gulp.task('images', function () {
 
 // Clean
 gulp.task('clean', function () {
-  return gulp.src(['dist/styles', 'dist/scripts', 'dist/images'], {read: false}).pipe($.clean());
+  return gulp.src(['dist'], {read: false}).pipe($.clean());
 });
 
-// Bundle
-gulp.task('bundle', ['styles', 'scripts'], $.bundle('./app/*.html'));
-
 // Build
-gulp.task('build', ['html', 'bundle', 'images']);
+gulp.task('build', ['styles', 'html', 'images']);
 
 // Default task
 gulp.task('default', ['clean'], function () {
@@ -83,8 +99,7 @@ gulp.task('wiredep', function () {
   gulp.src('app/*.html')
     .pipe(wiredep({
       directory: 'app/bower_components',
-      ignorePath: 'app/',
-      exclude: ['bootstrap']
+      ignorePath: 'app/'
     }))
     .pipe(gulp.dest('app'));
 });
@@ -105,12 +120,8 @@ gulp.task('watch', ['connect'], function () {
   // Watch .scss files
   gulp.watch('app/styles/**/*.scss', ['styles']);
 
-
   // Watch .js files
   gulp.watch('app/scripts/**/*.js', ['scripts']);
-
-  // Watch image files
-  gulp.watch('app/images/**/*', ['images']);
 
   // Watch bower files
   gulp.watch('bower.json', ['wiredep']);
