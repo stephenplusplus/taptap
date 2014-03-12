@@ -24,16 +24,47 @@ $icon-font-path: "/bower_components/bootstrap-sass/vendor/assets/fonts/";
   }
 }
 
+body {
+  font-size: 1.6em;
+  -webkit-font-smoothing: antialiased;
+}
+
 h1 {
   margin-bottom: 15px;
+}
+
+.key {
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 3px 0 #ddd;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 50px;
+  color: #aaa;
+}
+
+.key--tap::after {
+  content: "☞";
+}
+
+.key--ship::after {
+  display: block;
+  height: 100%;
+  width: 100%;
+  content: " ";
+  background: url(../images/ship.svg) no-repeat top center;
+  background-size: 66%;
 }
 
 .package {
   position: absolute;
   top: 8%;
-  left: 8%;
-  right: 8%;
   bottom: 8%;
+  left: 0;
+  right: 0;
+  padding: 10px 8%;
 }
 
 .letter {
@@ -45,8 +76,59 @@ h1 {
   animation-name: fadeIn;
 }
 
+.slide-out {
+  position: fixed;
+  z-index: 10;
+  transition: left 200ms, transform 250ms ease-in-out;
+  padding: 10px;
+  top: 8%;
+  bottom: 8%;
+  left: 100%;
+  width: 100%;
+
+  > * {
+    display: none;
+  }
+
+  &:hover {
+    left: 8%;
+    transform: rotate(.25deg);
+    background: linear-gradient(to left, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .8) 100%);
+    > * {
+      display: block;
+    }
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.meet-us {
+  z-index: 15;
+  top: 8%;
+  left: calc(100% - 120px);
+  bottom: calc(8% + 30px);
+  transform: rotate(-2deg);
+  background: linear-gradient(to left, #ddd 0%, #f7f7f7 200%);
+  &::before {
+    content: "meet.";
+  }
+}
+
+.our-work {
+  z-index: 20;
+  top: calc(8% + 30px);
+  bottom: 8%;
+  left: calc(100% - 60px);
+  transform: rotate(-1deg);
+  background: linear-gradient(to right, #ccc 0%, #f7f7f7 200%);
+  &::before {
+    content: "work.";
+  }
+}
+
 .logo--home {
-  float: right;
+  // float: right;
 
   .key {
     float: left;
@@ -86,30 +168,4 @@ h1 {
       background-position: center;
     }
   }
-}
-
-.key {
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 3px 0 #ddd;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  line-height: 100px;
-  font-size: 50px;
-  color: #aaa;
-}
-
-.key--tap::after {
-  content: "☝";
-  content: "☞";
-}
-
-.key--ship::after {
-  display: block;
-  height: 100%;
-  width: 100%;
-  content: " ";
-  background: url(../images/ship.svg) no-repeat top center;
-  background-size: 66%;
 }
