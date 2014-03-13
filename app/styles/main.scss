@@ -1,4 +1,5 @@
 $icon-font-path: "/bower_components/bootstrap-sass/vendor/assets/fonts/";
+$primary: #a92a2a;
 
 // bower:scss
 @import "../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
@@ -31,6 +32,11 @@ body {
 
 h1 {
   margin-bottom: 15px;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
 .key {
@@ -86,6 +92,50 @@ h1 {
   z-index: 30;
 }
 
+.mask {
+  z-index: -1;
+  position: fixed;
+  transition: opacity 1s;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.title {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .01) 0%, rgba(0, 0, 0, .02) 100%);
+  color: #444;
+  padding: 10px;
+}
+
+.intro {
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 15px;
+
+  > * {
+    float: left;
+    margin-top: 5px;
+  }
+
+  img {
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+  }
+
+  figcaption {
+    max-width: calc(100% - 60px);
+    padding: 0 8px;
+  }
+}
+
+.primary {
+  color: $primary;
+}
+
 .slide-out {
   border-radius: 10px 0 0 10px;
   position: fixed;
@@ -98,27 +148,17 @@ h1 {
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  animation-duration: 2s;
+  animation-name: fadeIn;
 
   > * {
     display: none;
   }
 
-  h1 {
-    // background-color: rgba(0, 0, 0, .05);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, .01) 0%, rgba(0, 0, 0, .02) 100%);
-    border-bottom: 1px solid rgba(0, 0, 0, .04);
-    color: #444;
-    margin: -11px;
-    margin-bottom: 20px;
-    border-radius: 10px 0 0 0;
-    padding: 10px;
-    line-height: 2em;
-  }
-
   &:hover {
     z-index: 100;
-    left: 10%;
-    width: 90%;
+    left: 4%;
+    width: 96%;
     transform: rotate(0);
     background: linear-gradient(to left, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, 1) 100%);
     box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .10);
@@ -127,33 +167,86 @@ h1 {
       display: block;
     }
 
+    & ~ .slide-out--home {
+      left: calc(100% - 80px);
+    }
+
+    & ~ .mask {
+      opacity: 1;
+    }
+
     &::before {
       display: none;
     }
+
+    &::after {
+      color: #444;
+    }
+  }
+
+  &::after {
+    content: "☞☞";
+    position: absolute;
+    bottom: 8px;
+    left: 14px;
+  }
+
+  .title {
+    border-bottom: 1px solid desaturate($primary, 20%);
+    margin: -11px;
+    margin-bottom: 10px;
+    border-radius: 10px 0 0 0;
+    line-height: 2em;
   }
 }
 
-.meet-us {
+.slide-out--meet-us {
   z-index: 15;
-  top: 8%;
+  top: calc(8% + 50px);
   left: calc(100% - 120px);
-  bottom: calc(8% + 30px);
+  bottom: 8%;
   transform: rotate(-2deg);
-  background: linear-gradient(to left, #ddd 0%, #f7f7f7 200%);
+  background: linear-gradient(to bottom, #ddd 0%, #f7f7f7 200%);
   &::before {
     content: "meet.";
   }
 }
 
-.our-work {
+.slide-out--body {
+  padding: 10px;
+}
+
+.slide-out--our-work {
   z-index: 20;
-  top: calc(8% + 30px);
-  bottom: 8%;
+  top: 8%;
+  bottom: calc(8% + 30px);
   left: calc(100% - 60px);
   transform: rotate(-1deg);
-  background: linear-gradient(to right, #ccc 0%, #f7f7f7 200%);
+  background: linear-gradient(to bottom, $primary 0%, lighten($primary, 20%) 200%);
+  color: #fff;
   &::before {
     content: "work.";
+  }
+}
+
+.slide-out--home {
+  display: none;
+}
+
+.touch .slide-out--home {
+  display: block;
+  transition: left 150ms;
+  z-index: 10;
+  top: 2%;
+  bottom: calc(8% + 30px);
+  left: 150%;
+  transform: rotate(-1deg);
+  background: linear-gradient(to right, #eee 0%, #f7f7f7 200%);
+  &::before {
+    content: "back.";
+  }
+  &:hover {
+    left: 150%;
   }
 }
 

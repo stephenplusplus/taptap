@@ -6311,6 +6311,11 @@ h1 {
   margin-bottom: 15px;
 }
 
+h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
 .key {
   -webkit-transform: rotate(-2deg);
   transform: rotate(-2deg);
@@ -6367,6 +6372,47 @@ h1 {
   z-index: 30;
 }
 
+.mask {
+  z-index: -1;
+  position: fixed;
+  transition: opacity 1s;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.title {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.02) 100%);
+  color: #444;
+  padding: 10px;
+}
+
+.intro {
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.intro > * {
+  float: left;
+  margin-top: 5px;
+}
+.intro img {
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+}
+.intro figcaption {
+  max-width: calc(100% - 60px);
+  padding: 0 8px;
+}
+
+.primary {
+  color: #a92a2a;
+}
+
 .slide-out {
   border-radius: 10px 0 0 10px;
   position: fixed;
@@ -6380,24 +6426,18 @@ h1 {
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
 }
 .slide-out > * {
   display: none;
 }
-.slide-out h1 {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.02) 100%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  color: #444;
-  margin: -11px;
-  margin-bottom: 20px;
-  border-radius: 10px 0 0 0;
-  padding: 10px;
-  line-height: 2em;
-}
 .slide-out:hover {
   z-index: 100;
-  left: 10%;
-  width: 90%;
+  left: 4%;
+  width: 96%;
   -webkit-transform: rotate(0);
   transform: rotate(0);
   background: linear-gradient(to left, rgba(255, 255, 255, 0.8) 0%, white 100%);
@@ -6406,34 +6446,83 @@ h1 {
 .slide-out:hover > * {
   display: block;
 }
+.slide-out:hover ~ .slide-out--home {
+  left: calc(100% - 80px);
+}
+.slide-out:hover ~ .mask {
+  opacity: 1;
+}
 .slide-out:hover::before {
   display: none;
 }
+.slide-out:hover::after {
+  color: #444;
+}
+.slide-out::after {
+  content: "☞☞";
+  position: absolute;
+  bottom: 8px;
+  left: 14px;
+}
+.slide-out .title {
+  border-bottom: 1px solid #943f3f;
+  margin: -11px;
+  margin-bottom: 10px;
+  border-radius: 10px 0 0 0;
+  line-height: 2em;
+}
 
-.meet-us {
+.slide-out--meet-us {
   z-index: 15;
-  top: 8%;
+  top: calc(8% + 50px);
   left: calc(100% - 120px);
-  bottom: calc(8% + 30px);
+  bottom: 8%;
   -webkit-transform: rotate(-2deg);
   transform: rotate(-2deg);
-  background: linear-gradient(to left, #dddddd 0%, #f7f7f7 200%);
+  background: linear-gradient(to bottom, #dddddd 0%, #f7f7f7 200%);
 }
-.meet-us::before {
+.slide-out--meet-us::before {
   content: "meet.";
 }
 
-.our-work {
+.slide-out--body {
+  padding: 10px;
+}
+
+.slide-out--our-work {
   z-index: 20;
-  top: calc(8% + 30px);
-  bottom: 8%;
+  top: 8%;
+  bottom: calc(8% + 30px);
   left: calc(100% - 60px);
   -webkit-transform: rotate(-1deg);
   transform: rotate(-1deg);
-  background: linear-gradient(to right, #cccccc 0%, #f7f7f7 200%);
+  background: linear-gradient(to bottom, #a92a2a 0%, #d86161 200%);
+  color: #fff;
 }
-.our-work::before {
+.slide-out--our-work::before {
   content: "work.";
+}
+
+.slide-out--home {
+  display: none;
+}
+
+.touch .slide-out--home {
+  display: block;
+  transition: left 150ms;
+  z-index: 10;
+  top: 2%;
+  bottom: calc(8% + 30px);
+  left: 150%;
+  -webkit-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+  background: linear-gradient(to right, #eeeeee 0%, #f7f7f7 200%);
+}
+.touch .slide-out--home::before {
+  content: "back.";
+}
+.touch .slide-out--home:hover {
+  left: 150%;
 }
 
 .logo--home .key {

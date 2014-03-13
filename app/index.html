@@ -24,29 +24,44 @@
       <div class="key key--ship"></div>
     </article>
 
-    <article class="slide-out meet-us" ng-click="go('meet-us')">
-      <h1>meet us.</h1>
-
-      <h3>dave supplee.</h3>
-      <p>
-        dave is a software engineer from detroit. he's worked directly with clients such as Chase.
-      </p>
-
-      <h3>stephen sawchuk.</h3>
-      <p>
-        stephen is another software engineer from detroit. stephen has worked with clients such as General Motors, Google, and more.
-      </p>
-
-      <h2>let's chat.</h2>
-      <form>
-      </form>
-    </article>
-
     <div ui-view></div>
 
-    <article class="slide-out our-work" ng-click="go('our-work')">
-      <h1>our work.</h1>
+    <article class="slide-out slide-out--our-work" ng-click="go('our-work')">
+      <h2 class="title">our work.</h2>
     </article>
+
+    <article class="slide-out slide-out--meet-us" ng-click="go('meet-us')">
+      <h2 class="title">meet us.</h2>
+
+      <article class="slide-out--body">
+        <h3>dave supplee.</h3>
+        <figure class="intro">
+          <img src="images/dave.jpg" class="img-rounded">
+          <figcaption>
+            <p>
+              dave is a software engineer from detroit. he's worked directly with clients such as DTE Energy.
+            </p>
+          </figcaption>
+        </figure>
+
+        <h3>stephen sawchuk.</h3>
+        <figure class="intro">
+          <img src="images/stephen.jpeg" class="img-rounded">
+          <figcaption>
+            <p>
+              stephen is another software engineer from detroit. stephen has worked with clients such as General Motors, Google, and more.
+            </p>
+          </figcaption>
+        </figure>
+
+        <form>
+        </form>
+      </article>
+    </article>
+
+    <article class="slide-out slide-out--home"></article>
+
+    <div class="mask"></div>
   </div>
 
   <!-- build:js scripts/vendor.js -->
