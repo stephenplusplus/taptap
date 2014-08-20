@@ -18,6 +18,8 @@
 <body ng-app="taptap">
 
   <div class="package">
+    <hr class="border--page">
+
     <article class="logo logo--home">
       <div class="key key--tap"></div>
       <div class="key key--tap"></div>
@@ -26,47 +28,15 @@
 
     <div ui-view></div>
 
-    <article class="slide-out slide-out--our-work" ng-click="go('our-work')">
-      <h2 class="title">our work.</h2>
-    </article>
-
-    <article class="slide-out slide-out--meet-us" ng-click="go('meet-us')">
-      <h2 class="title">meet us.</h2>
-
-      <article class="slide-out--body">
-        <h3>dave supplee.</h3>
-        <figure class="intro">
-          <img src="images/dave.jpg" class="img-rounded">
-          <figcaption>
-            <p>
-              dave is a software engineer from detroit. he's worked directly with clients such as DTE Energy.
-            </p>
-          </figcaption>
-        </figure>
-
-        <h3>stephen sawchuk.</h3>
-        <figure class="intro">
-          <img src="images/stephen.jpeg" class="img-rounded">
-          <figcaption>
-            <p>
-              stephen is another software engineer from detroit. stephen has worked with clients such as General Motors, Google, and more.
-            </p>
-          </figcaption>
-        </figure>
-
-        <form>
-        </form>
-      </article>
-    </article>
-
-    <article class="slide-out slide-out--home"></article>
-
     <div class="mask"></div>
+
+    <hr class="border--page">
   </div>
 
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->
   <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <!-- endbower -->

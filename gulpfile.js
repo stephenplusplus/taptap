@@ -33,10 +33,11 @@ gulp.task('html', function () {
     css: $.filter('styles/**/*.css'),
     js: $.filter('scripts/**/*.js')
   };
-  var useref = $.useref();
+
+  var assets = $.useref.assets();
 
   gulp.src(['app/**/*.html', '!app/bower_components/**/*.html'])
-    .pipe(useref.assets())
+    .pipe(assets)
     .pipe(filter.js)
     .pipe($.ngmin())
     .pipe($.uglify({
@@ -46,8 +47,8 @@ gulp.task('html', function () {
     .pipe(filter.css)
     .pipe($.minifyCss())
     .pipe(filter.css.restore())
-    .pipe(useref.restore())
-    .pipe(useref)
+    .pipe(assets.restore())
+    .pipe($.useref())
     .pipe(gulp.dest('dist'))
     .pipe($.size());
 

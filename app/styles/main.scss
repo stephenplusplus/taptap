@@ -2,7 +2,7 @@ $icon-font-path: "/bower_components/bootstrap-sass/vendor/assets/fonts/";
 $primary: #a92a2a;
 
 // bower:scss
-@import "../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
+@import "bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
 @keyframes moveIn {
@@ -28,6 +28,10 @@ $primary: #a92a2a;
 body {
   font-size: 1.6em;
   -webkit-font-smoothing: antialiased;
+}
+
+hr {
+  margin: 0;
 }
 
 h1 {
@@ -84,170 +88,36 @@ h3 {
 
 .letter {
   position: absolute;
+  top: 0;
+  right: 8%;
   bottom: 0;
+  left: 8%;
   opacity: 0;
+  overflow: auto;
   -webkit-animation-fill-mode: forwards;
   animation-duration: 1.5s;
   animation-name: fadeIn;
   z-index: 30;
+
+  @media (min-height:400px) {
+    top: auto;
+  }
 }
 
 .mask {
   z-index: -1;
   position: fixed;
   transition: opacity 1s;
-  opacity: 0;
+  opacity: 1;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 0) 100%);
-}
-
-.title {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, .01) 0%, rgba(0, 0, 0, .02) 100%);
-  color: #444;
-  padding: 10px;
-}
-
-.intro {
-  clear: both;
-  overflow: hidden;
-  margin-bottom: 15px;
-
-  > * {
-    float: left;
-    margin-top: 5px;
-  }
-
-  img {
-    margin-left: 10px;
-    width: 50px;
-    height: 50px;
-  }
-
-  figcaption {
-    max-width: calc(100% - 60px);
-    padding: 0 8px;
-  }
+  background: linear-gradient(to left, rgba(0, 0, 0, .05) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .primary {
   color: $primary;
-}
-
-.slide-out {
-  border-radius: 10px 0 0 10px;
-  position: fixed;
-  z-index: 10;
-  transition: left 200ms, transform 250ms ease-in-out;
-  padding: 10px;
-  top: 8%;
-  bottom: 8%;
-  left: 100%;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  animation-duration: 2s;
-  animation-name: fadeIn;
-
-  > * {
-    display: none;
-  }
-
-  &:hover {
-    z-index: 100;
-    left: 4%;
-    width: 96%;
-    transform: rotate(0);
-    background: linear-gradient(to left, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, 1) 100%);
-    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .10);
-
-    > * {
-      display: block;
-    }
-
-    & ~ .slide-out--home {
-      left: calc(100% - 80px);
-    }
-
-    & ~ .mask {
-      opacity: 1;
-    }
-
-    &::before {
-      display: none;
-    }
-
-    &::after {
-      color: #444;
-    }
-  }
-
-  &::after {
-    content: "☞☞";
-    position: absolute;
-    bottom: 8px;
-    left: 14px;
-  }
-
-  .title {
-    border-bottom: 1px solid desaturate($primary, 20%);
-    margin: -11px;
-    margin-bottom: 10px;
-    border-radius: 10px 0 0 0;
-    line-height: 2em;
-  }
-}
-
-.slide-out--meet-us {
-  z-index: 15;
-  top: calc(8% + 50px);
-  left: calc(100% - 120px);
-  bottom: 8%;
-  transform: rotate(-2deg);
-  background: linear-gradient(to bottom, #ddd 0%, #f7f7f7 200%);
-  &::before {
-    content: "meet.";
-  }
-}
-
-.slide-out--body {
-  padding: 10px;
-}
-
-.slide-out--our-work {
-  z-index: 20;
-  top: 8%;
-  bottom: calc(8% + 30px);
-  left: calc(100% - 60px);
-  transform: rotate(-1deg);
-  background: linear-gradient(to bottom, $primary 0%, lighten($primary, 20%) 200%);
-  color: #fff;
-  &::before {
-    content: "work.";
-  }
-}
-
-.slide-out--home {
-  display: none;
-}
-
-.touch .slide-out--home {
-  display: block;
-  transition: left 150ms;
-  z-index: 10;
-  top: 2%;
-  bottom: calc(8% + 30px);
-  left: 150%;
-  transform: rotate(-1deg);
-  background: linear-gradient(to right, #eee 0%, #f7f7f7 200%);
-  &::before {
-    content: "back.";
-  }
-  &:hover {
-    left: 150%;
-  }
 }
 
 .logo--home {
@@ -288,5 +158,42 @@ h3 {
       background-size: 300%;
       background-position: center;
     }
+  }
+
+  display: none;
+  @media (min-height:400px) {
+    display: block;
+  }
+}
+
+.hover-glow {
+  transition: background-color .75s;
+  &:hover.hover-glow--accent,
+  &:hover .hover-glow--accent {
+    background-color: lighten($primary, 50%);
+  }
+}
+
+.dot-glow {
+  transition: opacity .25s;
+  .dot-glow--accent {
+    opacity: 0;
+  }
+  &:hover .dot-glow--accent {
+    opacity: 1;
+  }
+}
+
+.border--page {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  &:first-of-type {
+    position: absolute;
+    top: -20px;
+  }
+  &:last-of-type {
+    position: absolute;
+    bottom: -20px;
   }
 }
