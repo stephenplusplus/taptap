@@ -1,8 +1,8 @@
-$icon-font-path: "/bower_components/bootstrap-sass/vendor/assets/fonts/";
+$icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/";
 $primary: #a92a2a;
 
 // bower:scss
-@import "bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
+@import "../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
 @keyframes moveIn {
